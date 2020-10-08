@@ -1,4 +1,4 @@
-# Standing By Starter - Nextjs & Contenful
+# Standing By Starter - Nextjs & Contentful
 
 ## What it is
 
