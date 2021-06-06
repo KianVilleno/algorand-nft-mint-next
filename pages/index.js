@@ -1,26 +1,37 @@
 import React from "react";
-import { Box } from "theme-ui";
-import Link from "next/link";
-import styled from "@emotion/styled";
 import Head from "next/head";
+import GridIndex from "components/Grid";
 
-const Index = () => {
+import { getNotionPosts } from "utils/notion";
+
+const Index = ({ posts }) => {
+  console.log("2. posts", posts);
+
   return (
     <>
       <Head>
-        <title>Standing By / Contentful & Nextjs</title>
+        <title>Standing By</title>
       </Head>
-      <DemoStyled p="4">
-        Home :)
-        <br />
-        <Link href="/contentful-demo">Contenful Graphql Demo</Link>
-      </DemoStyled>
+      {posts && <GridIndex posts={posts} />}
     </>
   );
 };
 
 export default Index;
 
-const DemoStyled = styled(Box)`
-  color: ${(props) => props.theme.colors.text};
-`;
+export async function getStaticProps() {
+  // const apolloClient = initializeApollo();
+  // const props = await apolloClient.query({
+  //   query: GET_ALL_DEMO,
+  // });
+
+  const posts = await getNotionPosts();
+
+  console.log("1. posts", posts);
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}

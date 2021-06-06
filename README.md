@@ -26,3 +26,11 @@ Run:
 1. `npm run dev` :)
 
 ## References
+
+## Are.na
+
+Application Id:
+18c4e330bdfdf25d8759a652531fb1ce91aace0adbe800a0ba39575cacb7e03f
+
+Secret:
+eb8395bb906e718baf907ec2f0f1822c6f484e794331950e8dd665d109e81bf4
