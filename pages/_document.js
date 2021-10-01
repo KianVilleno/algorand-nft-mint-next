@@ -1,5 +1,6 @@
+import React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import { extractCritical } from "emotion-server";
+import { extractCritical } from "@emotion/server";
 
 class MyDocument extends Document {
   render() {

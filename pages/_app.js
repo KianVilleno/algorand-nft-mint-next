@@ -1,11 +1,15 @@
-import { CacheProvider, Global, css } from "@emotion/core";
-import { ThemeProvider } from "theme-ui";
-import theme from "theme";
-import { cache } from "emotion";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo/client";
 
+import { CacheProvider, Global } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { ThemeProvider } from "theme-ui";
+import theme from "theme";
+
 import "styles/fonts.css";
+
+const key = "cache";
+const cache = createCache({ key });
 
 const App = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
