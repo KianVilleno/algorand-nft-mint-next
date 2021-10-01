@@ -1,7 +1,7 @@
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo/client";
 
-import { CacheProvider, Global } from "@emotion/react";
+import { CacheProvider, Global, css } from "@emotion/react";
 import createCache from "@emotion/cache";
 import { ThemeProvider } from "theme-ui";
 import theme from "theme";
