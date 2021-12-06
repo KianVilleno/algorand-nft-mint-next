@@ -1,3 +1,5 @@
+import { useRouter } from "next/dist/client/router";
+
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo/client";
 
@@ -6,12 +8,16 @@ import createCache from "@emotion/cache";
 import { ThemeProvider } from "theme-ui";
 import theme from "theme";
 
+import { AnimatePresence } from "framer-motion";
+import PageAnimWrap from "components/PageAnimWrap";
+
 import "styles/fonts.css";
 
 const key = "cache";
 const cache = createCache({ key });
 
 const App = ({ Component, pageProps }) => {
+  const router = useRouter();
   const apolloClient = useApollo(pageProps.initialApolloState);
 
   return (
@@ -19,7 +25,11 @@ const App = ({ Component, pageProps }) => {
       <CacheProvider value={cache}>
         <ThemeProvider theme={theme}>
           <GlobalStyle theme={theme} />
-          <Component {...pageProps} />
+          <AnimatePresence exitBeforeEnter>
+            <PageAnimWrap motionKey={router.asPath}>
+              <Component {...pageProps} />
+            </PageAnimWrap>
+          </AnimatePresence>
         </ThemeProvider>
       </CacheProvider>
     </ApolloProvider>

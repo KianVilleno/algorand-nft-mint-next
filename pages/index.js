@@ -2,16 +2,12 @@ import React from "react";
 import Head from "next/head";
 import axios from "axios";
 import GridIndex from "components/Grid";
-
-import { Text } from "@theme-ui/components";
+import Seo from "components/Seo";
 
 const Index = ({ posts }) => {
-  console.log(posts);
   return (
     <>
-      <Head>
-        <title>Standing By</title>
-      </Head>
+      <Seo title="Standing By" isHome />
       {posts && <GridIndex posts={posts} />}
     </>
   );
