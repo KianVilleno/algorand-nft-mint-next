@@ -1,12 +1,12 @@
 import React from "react";
 import Head from "next/head";
+import axios from "axios";
 import GridIndex from "components/Grid";
 
-import { getNotionPosts } from "utils/notion";
+import { Text } from "@theme-ui/components";
 
 const Index = ({ posts }) => {
-  console.log("2. posts", posts);
-
+  console.log(posts);
   return (
     <>
       <Head>
@@ -20,14 +20,11 @@ const Index = ({ posts }) => {
 export default Index;
 
 export async function getStaticProps() {
-  // const apolloClient = initializeApollo();
-  // const props = await apolloClient.query({
-  //   query: GET_ALL_DEMO,
-  // });
+  const fetchData = await axios.get(
+    "https://picsum.photos/v2/list?page=2&limit=100"
+  );
 
-  const posts = await getNotionPosts();
-
-  console.log("1. posts", posts);
+  const { data: posts } = fetchData;
 
   return {
     props: {

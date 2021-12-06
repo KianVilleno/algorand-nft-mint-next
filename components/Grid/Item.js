@@ -3,7 +3,7 @@ import { Box } from "theme-ui";
 import styled from "@emotion/styled";
 
 const GridItem = ({ post }) => {
-  const image = post.images.display.url;
+  const image = post.download_url;
 
   return (
     <El>
