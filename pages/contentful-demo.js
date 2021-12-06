@@ -35,3 +35,11 @@
 // }
 
 // export default Index;
+
+import React from "react";
+
+const contentfulDemo = () => {
+  return <div>contentful demo</div>;
+};
+
+export default contentfulDemo;
