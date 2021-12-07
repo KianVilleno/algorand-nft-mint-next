@@ -1,11 +1,13 @@
 import gql from "graphql-tag";
 
 const GET_ALL_DEMO = gql`
-  query Artists {
-    artistCollection(order: lastName_ASC, limit: 400) {
+  query {
+    assetCollection(limit: 100) {
       items {
-        name
-        slug
+        title
+        url
+        width
+        height
       }
     }
   }

@@ -2,8 +2,8 @@ import React from "react";
 import { Box } from "theme-ui";
 import styled from "@emotion/styled";
 
-const GridItem = ({ post }) => {
-  const image = post.download_url;
+const GridItem = ({ item, imageKey }) => {
+  const image = item[imageKey];
 
   return (
     <El>

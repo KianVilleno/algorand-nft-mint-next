@@ -8,7 +8,7 @@ const Index = ({ posts }) => {
   return (
     <>
       <Seo title="Standing By" isHome />
-      {posts && <GridIndex posts={posts} />}
+      {posts && <GridIndex items={posts} imageKey="download_url" />}
     </>
   );
 };

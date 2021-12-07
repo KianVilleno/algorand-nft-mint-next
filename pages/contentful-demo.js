@@ -1,45 +1,38 @@
-// import { useQuery } from "@apollo/client";
-// import { initializeApollo } from "apollo/client";
-// import { GET_ALL_DEMO } from "queries";
-// import { Box } from "theme-ui";
-// import Head from "next/head";
+import { Box } from "theme-ui";
 
-// const Index = () => {
-//   const { loading, error, data } = useQuery(GET_ALL_DEMO);
-//   if (loading) return null;
-//   const artists = data.artistCollection.items;
-//   return (
-//     <>
-//       <Head>
-//         <title>Standing By / Contentful Demo</title>
-//       </Head>
-//       <Box p="4">
-//         {artists.map(({ name, slug }, i) => (
-//           <div key={i}>{name}</div>
-//         ))}
-//       </Box>
-//     </>
-//   );
-// };
+import { initializeApollo } from "apollo/client";
+import { GET_ALL_DEMO } from "queries";
 
-// export async function getStaticProps() {
-//   const apolloClient = initializeApollo();
-//   await apolloClient.query({
-//     query: GET_ALL_DEMO,
-//   });
-//   return {
-//     props: {
-//       initialApolloState: apolloClient.cache.extract(),
-//     },
-//   };
-// }
+import GridIndex from "components/Grid";
+import Seo from "components/Seo";
 
-// export default Index;
-
-import React from "react";
-
-const contentfulDemo = () => {
-  return <div>contentful demo</div>;
+const Index = ({ demoData }) => {
+  return (
+    <>
+      <Seo title="Standing By / Contentful Demo" />
+      <Box p="4">
+        {demoData && (
+          <GridIndex items={demoData.assetCollection.items} imageKey="url" />
+        )}
+      </Box>
+    </>
+  );
 };
 
-export default contentfulDemo;
+export async function getStaticProps() {
+  const apolloClient = initializeApollo(null, false);
+
+  const demoResult = await apolloClient.query({
+    query: GET_ALL_DEMO,
+  });
+
+  const { data: demoData } = demoResult;
+
+  return {
+    props: {
+      demoData,
+    },
+  };
+}
+
+export default Index;

@@ -4,11 +4,11 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 import GridItem from "./Item";
 
-const GridIndex = ({ posts }) => {
+const GridIndex = ({ items, imageKey }) => {
   return (
     <El>
-      {posts.map((post, i) => (
-        <GridItem key={i} post={post} />
+      {items.map((item, i) => (
+        <GridItem key={i} item={item} imageKey={imageKey} />
       ))}
     </El>
   );
