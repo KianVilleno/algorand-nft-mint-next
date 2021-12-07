@@ -1,3 +1,5 @@
+import { baseColors } from "./colors";
+
 const breakpoints = ["400px", "52em", "64em"];
 const space = [0, 4, 8, 16, 32, 64, 128, 256, 512];
 const fonts = {
@@ -16,15 +18,14 @@ const lineHeights = {
   heading: 1.125,
 };
 const colors = {
-  text: "#333",
+  ...baseColors,
+  text: "#000",
   background: "#fff",
-  primary: "#6B5EFF",
-  secondary: "#00F988",
+  primary: "#000",
 };
 const text = {
   default: {
     color: "text",
-    fontSize: 3,
   },
   caps: {
     textTransform: "uppercase",
@@ -34,6 +35,27 @@ const text = {
     fontFamily: "heading",
     fontWeight: "heading",
     lineHeight: "heading",
+  },
+  xxs: {
+    fontSize: "0.625rem",
+  },
+  xs: {
+    fontSize: "0.75rem",
+  },
+  s: {
+    fontSize: "0.875rem",
+  },
+  m: {
+    fontSize: "1rem",
+  },
+  l: {
+    fontSize: "1.125rem",
+  },
+  xl: {
+    fontSize: "1.25rem",
+  },
+  xxl: {
+    fontSize: "1.5rem",
   },
 };
 const mediaQueries = {
