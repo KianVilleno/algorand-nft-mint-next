@@ -123,8 +123,6 @@ function App() {
         " confirmed in round " +
         confirmedTxn["confirmed-round"]
     );
-
-
   };
 
   const handleGetAsset = async (id) => {
@@ -167,10 +165,10 @@ function App() {
     const accCreator = await stdlib.newAccountFromMnemonic(
       "course sea lunar arrow core kite small time into inch staff toward supreme mechanic lobster cage nasty flavor debris slam harbor doctor allow absorb huge"
     );
-    const accBuyer = await stdlib.newAccountFromMnemonic(
-      "ignore jungle blush toddler critic solar aisle review pigeon banana entry truth seed waste drama release ordinary salute find aware tackle addict ordinary ability youth"
-    );
-    // const accBuyer = userAccount;
+    // const accBuyer = await stdlib.newAccountFromMnemonic(
+    //   "ignore jungle blush toddler critic solar aisle review pigeon banana entry truth seed waste drama release ordinary salute find aware tackle addict ordinary ability youth"
+    // );
+    const accBuyer = userAccount;
     const ctcCreator = accCreator.contract(backend);
     const ctcBuyer = accBuyer.contract(backend, ctcCreator.getInfo());
     dLog(`Creating NFT... ${nftConfig?.nft_name} ${nftConfig?.nft_symbol}`);
