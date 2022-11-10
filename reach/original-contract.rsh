@@ -1,13 +1,12 @@
 "reach 0.1";
 
 const Params = Object({ nftId: Token, price: UInt });
-const amt = 1;
 
 export const main = Reach.App(() => {
   const Creator = Participant("Creator", {
     getSale: Fun([], Params),
   });
-  const Buyer = Participant("Buyer", {
+  const Buyer = ParticipantClass("Buyer", {
     seeParams: Fun([Params], Null),
   });
   init();
@@ -16,15 +15,27 @@ export const main = Reach.App(() => {
     const { nftId, price } = declassify(interact.getSale());
   });
   Creator.publish(nftId, price);
+  const amt = 1;
   commit();
 
-  Creator.pay([[amt, nftId]]);
+  Buyer.publish().pay(price);
+  commit();
+  Creator.only(() => {
+    const creatorAddr = this;
+  });
+  Creator.publish(creatorAddr);
+  transfer(price).to(creatorAddr);
   commit();
 
   Buyer.interact.seeParams({ nftId, price });
-  Buyer.publish().pay(price);
-  transfer(price).to(Creator);
-  transfer(amt, nftId).to(Buyer);
+
+  Creator.pay([[amt, nftId]]);
+  commit();
+  Buyer.only(() => {
+    const BuyerAddr = this;
+  });
+  Buyer.publish(BuyerAddr);
+  transfer(amt, nftId).to(BuyerAddr);
   commit();
 
   exit();
